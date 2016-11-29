@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.andorid.freemind.jokewizardandroid.JokeActivity;
 import com.example.JokeTreasure;
-import com.example.anant.myapplication.backend.myApi.model.MyBean;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.udacity.gradle.asyntask.EndPoints;
@@ -22,10 +21,14 @@ import com.udacity.gradle.asyntask.EndPoints;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment  {
+public class MainActivityFragment extends Fragment implements Databridge  {
 
+    public MainActivity mainActivity;
+
+    Context context;
     public MainActivityFragment() {
     }
+
 
 
     Button retrieveJoke;
@@ -57,9 +60,9 @@ public class MainActivityFragment extends Fragment  {
             @Override
             public void onClick(View v) {
                 new EndPoints().execute(new Pair<Context, String>(getContext(), "Manfred"));
-
-
-                launchJokeActivity();
+                context = getActivity();
+               // jokebridge();
+                //launchJokeActivity();
 
             }
 
@@ -74,17 +77,26 @@ public class MainActivityFragment extends Fragment  {
 
 
 
-        Intent intent = new Intent(getContext(), JokeActivity.class);
+       // Intent intent = new Intent(getContext(), JokeActivity.class);
 
-        String j = new MyBean().getData();
+       // String j = new MyBean().getData();
 
-        Log.d("jokeinMAF" ,j );
+       // Log.d("jokeinMAF" ,j );
 
        // intent.putExtra("jokefrommaf", joke);
 
-        startActivity(intent);
+       // startActivity(intent);
     }
 
 
+    @Override
+    public String jokebridge(String data) {
+        Intent intent = new Intent(context, JokeActivity.class);
+  //      intent.putExtra("jokefrommaf", data);
 
+        startActivity(intent);
+        Log.d("JOKE", data);
+
+        return data;
+    }
 }
