@@ -1,8 +1,9 @@
+package com.udacity.gradle.builditbigger;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v4.util.Pair;
-import android.test.ActivityInstrumentationTestCase;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.UiThreadTest;
 
@@ -11,7 +12,6 @@ import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
-import com.udacity.gradle.builditbigger.MainActivity;
 
 import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
@@ -21,25 +21,17 @@ import java.util.concurrent.TimeUnit;
  * Created by anant on 2016-11-30.
  */
 
-public class AsyncronusTest extends ActivityInstrumentationTestCase2<MainActivity>{
+public class AsyncTest extends ActivityInstrumentationTestCase2<MainActivity>{
 
     private static MyApi myAPIService= null;
     private Context context;
     String returnedResult;
     Activity act = new Activity();
 
-    public AsyncronusTest() {
+    public AsyncTest() {
         super(MainActivity.class);
     }
-    /**
-     * Creates an {@link ActivityInstrumentationTestCase} in non-touch mode.
-     *
-     * @param pkg           ignored - no longer in use.
-     * @param activityClass The activity to test. This must be a class in the instrumentation
-     */
-    public AsyncronusTest(String pkg, Class activityClass) {
-        super(pkg, activityClass);
-    }
+
 
 
     @UiThreadTest
@@ -108,11 +100,11 @@ public class AsyncronusTest extends ActivityInstrumentationTestCase2<MainActivit
             }
         };
 
-       // InstrumentationTestCase it = new InstrumentationTestCase();
+        // InstrumentationTestCase it = new InstrumentationTestCase();
 
         //execute asynctask on ui thread
 
-       runTestOnUiThread(new Runnable() {
+        runTestOnUiThread(new Runnable() {
             /**
              * When an object implementing interface <code>Runnable</code> is used
              * to create a thread, starting the thread causes the object's
@@ -141,10 +133,10 @@ public class AsyncronusTest extends ActivityInstrumentationTestCase2<MainActivit
 
         //assertTrue(returnedResult,true );
 
-     //   }
-      //  else {
-          //  assertTrue(returnedResult, false);
-      //  }
+        //   }
+        //  else {
+        //  assertTrue(returnedResult, false);
+        //  }
     }
 
      /* The testing thread will wait here until the UI thread releases it
