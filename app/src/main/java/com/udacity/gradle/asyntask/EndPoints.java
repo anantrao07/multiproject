@@ -10,10 +10,11 @@ import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
-import com.udacity.gradle.builditbigger.Databridge;
-import com.udacity.gradle.builditbigger.MainActivityFragment;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
+
 /**
  * Created by anant on 2016-11-27.
  */
@@ -37,8 +38,6 @@ public class EndPoints extends AsyncTask<Pair<Context, String>,Void,String> {
     private static MyApi myAPIService= null;
     private Context context;
 
-    Databridge databridge;
-
 
 
 
@@ -52,7 +51,7 @@ public class EndPoints extends AsyncTask<Pair<Context, String>,Void,String> {
             // options for running against local devappserver
             // - 10.0.2.2 is localhost's IP address in Android emulator
             // - turn off compression when running against local devappserver
-            .setRootUrl("http://192.168.0.7:8080/_ah/api/")
+            .setRootUrl("http://192.168.0.6:8080/_ah/api/")
                     .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
                         @Override
                         public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
@@ -83,8 +82,10 @@ public class EndPoints extends AsyncTask<Pair<Context, String>,Void,String> {
 
 
         Toast.makeText(context, result, Toast.LENGTH_LONG).show();
-        Databridge db = new MainActivityFragment();
-        db.jokebridge(result);
+        EventBus.getDefault().post(result);
+
+       // Databridge db = new MainActivityFragment();
+      //  databridge.jokebridge(result);
 
 
 

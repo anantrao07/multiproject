@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.Pair;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,15 +17,22 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.udacity.gradle.asyntask.EndPoints;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 /**
  * A placeholder fragment containing a simple view.
  */
 public class MainActivityFragment extends Fragment implements Databridge  {
 
-    public MainActivity mainActivity;
 
-    Context context;
+    private EventBus bus = EventBus.getDefault();
+
+
     public MainActivityFragment() {
+
+
     }
 
 
@@ -36,6 +42,19 @@ public class MainActivityFragment extends Fragment implements Databridge  {
     JokeTreasure js = new JokeTreasure();
 
     final String joke = js.jokeSource();
+
+    /**
+     * Called when a fragment is first attached to its context.
+     * {@link #onCreate(Bundle)} will be called after this.
+     *
+     * @param context
+     */
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        EventBus.getDefault().register(this);
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,7 +79,8 @@ public class MainActivityFragment extends Fragment implements Databridge  {
             @Override
             public void onClick(View v) {
                 new EndPoints().execute(new Pair<Context, String>(getContext(), "Manfred"));
-                context = getActivity();
+
+               // mainActivity = getActivity();
                // jokebridge();
                 //launchJokeActivity();
 
@@ -88,15 +108,38 @@ public class MainActivityFragment extends Fragment implements Databridge  {
        // startActivity(intent);
     }
 
+    @Subscribe (threadMode= ThreadMode.MAIN)
+    public void onEvent(String result){
+
+        String joke = result;
+        Intent intent = new Intent(getContext(), JokeActivity.class);
+        intent.putExtra("jokefrommaf", joke);
+        startActivity(intent);
+
+    }
 
     @Override
     public String jokebridge(String data) {
-        Intent intent = new Intent(context, JokeActivity.class);
-  //      intent.putExtra("jokefrommaf", data);
 
-        startActivity(intent);
-        Log.d("JOKE", data);
+     //   Log.d("JOKE", data);
+      //  if(getActivity()!=null) {
+        //    Intent intent = new Intent(getActivity(), JokeActivity.class);
+         //         intent.putExtra("jokefrommaf", data);
+
+         //    startActivity(intent);
+       // }
 
         return data;
+    }
+
+    /**
+     * Called when the fragment is no longer attached to its activity.  This
+     * is called after {@link #onDestroy()}.
+     */
+    @Override
+    public void onDetach() {
+
+        super.onDetach();
+        EventBus.getDefault().unregister(this);
     }
 }
