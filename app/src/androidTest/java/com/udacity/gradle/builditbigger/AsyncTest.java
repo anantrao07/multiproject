@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v4.util.Pair;
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.UiThreadTest;
 
 import com.example.anant.myapplication.backend.myApi.MyApi;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -34,7 +33,7 @@ public class AsyncTest extends ActivityInstrumentationTestCase2<MainActivity>{
 
 
 
-    @UiThreadTest
+
     public void test() throws Throwable{
         final CountDownLatch cl = new CountDownLatch(1);
 
