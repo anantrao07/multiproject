@@ -127,10 +127,10 @@ public class AsyncTest extends ActivityInstrumentationTestCase2<MainActivity>{
         //if (returnedResult!=null){
         //(returnedResult);
 
-        assertNull(returnedResult);
+        //assertNull(returnedResult);
 
 
-        //assertTrue(returnedResult,true );
+        assertTrue(returnedResult,true );
 
         //   }
         //  else {
