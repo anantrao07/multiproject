@@ -42,12 +42,7 @@ public class MainActivityFragment extends Fragment implements Databridge  {
 
     final String joke = js.jokeSource();
 
-    /**
-     * Called when a fragment is first attached to its context.
-     * {@link #onCreate(Bundle)} will be called after this.
-     *
-     * @param context
-     */
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -74,9 +69,7 @@ public class MainActivityFragment extends Fragment implements Databridge  {
             public void onClick(View v) {
                 new EndPoints().execute(new Pair<Context, String>(getContext(), "Manfred"));
 
-               // mainActivity = getActivity();
-               // jokebridge();
-                //launchJokeActivity();
+
 
             }
 
@@ -87,20 +80,6 @@ public class MainActivityFragment extends Fragment implements Databridge  {
         return root;
     }
 
-    public void launchJokeActivity(){
-
-
-
-       // Intent intent = new Intent(getContext(), JokeActivity.class);
-
-       // String j = new MyBean().getData();
-
-       // Log.d("jokeinMAF" ,j );
-
-       // intent.putExtra("jokefrommaf", joke);
-
-       // startActivity(intent);
-    }
 
     @Subscribe (threadMode= ThreadMode.MAIN)
     public void onEvent(String result){
@@ -114,15 +93,6 @@ public class MainActivityFragment extends Fragment implements Databridge  {
 
     @Override
     public String jokebridge(String data) {
-
-     //   Log.d("JOKE", data);
-      //  if(getActivity()!=null) {
-        //    Intent intent = new Intent(getActivity(), JokeActivity.class);
-         //         intent.putExtra("jokefrommaf", data);
-
-         //    startActivity(intent);
-       // }
-
         return data;
     }
 

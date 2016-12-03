@@ -82,9 +82,7 @@ public class MainActivityFragment extends Fragment implements Databridge  {
             public void onClick(View v) {
                 new EndPoints().execute(new Pair<Context, String>(getContext(), "Manfred"));
 
-               // mainActivity = getActivity();
-               // jokebridge();
-                //launchJokeActivity();
+
 
             }
 
@@ -99,15 +97,7 @@ public class MainActivityFragment extends Fragment implements Databridge  {
 
 
 
-       // Intent intent = new Intent(getContext(), JokeActivity.class);
 
-       // String j = new MyBean().getData();
-
-       // Log.d("jokeinMAF" ,j );
-
-       // intent.putExtra("jokefrommaf", joke);
-
-       // startActivity(intent);
     }
 
     @Subscribe (threadMode= ThreadMode.MAIN)
@@ -123,13 +113,7 @@ public class MainActivityFragment extends Fragment implements Databridge  {
     @Override
     public String jokebridge(String data) {
 
-     //   Log.d("JOKE", data);
-      //  if(getActivity()!=null) {
-        //    Intent intent = new Intent(getActivity(), JokeActivity.class);
-         //         intent.putExtra("jokefrommaf", data);
 
-         //    startActivity(intent);
-       // }
 
         return data;
     }
