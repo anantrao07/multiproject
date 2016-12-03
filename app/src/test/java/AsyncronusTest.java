@@ -11,6 +11,7 @@ import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
+import com.udacity.gradle.asyntask.EndPoints;
 import com.udacity.gradle.builditbigger.MainActivity;
 
 import java.io.IOException;
@@ -46,6 +47,8 @@ public class AsyncronusTest extends ActivityInstrumentationTestCase2<MainActivit
     public void test() throws Throwable{
         final CountDownLatch cl = new CountDownLatch(1);
 
+
+        EndPoints p = new EndPoints();
 
         final AsyncTask<Pair<Context,String> ,Void, String> task = new AsyncTask<Pair<Context, String>, Void, String>() {
             @Override
@@ -126,6 +129,7 @@ public class AsyncronusTest extends ActivityInstrumentationTestCase2<MainActivit
              */
             @Override
             public void run() {
+
 
                 task.execute(new Pair<Context, String>(context, "Manfred"));
             }

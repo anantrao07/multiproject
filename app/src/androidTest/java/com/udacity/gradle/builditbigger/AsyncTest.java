@@ -139,7 +139,7 @@ public class AsyncTest extends ActivityInstrumentationTestCase2<MainActivity>{
     }
 
      /* The testing thread will wait here until the UI thread releases it
-     * above with the countDown() or 30 seconds passes and it times out.
+     * above with the countDown() or 10 seconds passes and it times out.
      */
     //
 }
